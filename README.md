@@ -9,7 +9,7 @@
 
 ## 🛠️ **Tecnologías**
 - **Base de datos:** MongoDB.
-- **Lenguaje:** Por definir
+- **Lenguaje:** JavaScript
 
 ## 📂 **Estructura**
 - **Usuarios:** Información personal y preferencias.
