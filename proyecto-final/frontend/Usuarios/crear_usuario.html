@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Usuario</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+</head>
+<body class="bg-gray-900 text-gray-200 font-['Roboto_Flex']">
+
+    <div class="container mx-auto p-8" x-data="usuarioForm()">
+        <h1 class="text-4xl font-extrabold text-center mb-8 text-gray-100">Agregar Usuario</h1>
+
+        <form @submit.prevent="submitForm" class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="mb-4">
+                <label for="nombre" class="block text-gray-200 font-medium">Nombre:</label>
+                <input type="text" id="nombre" x-model="usuario.nombre" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="correo" class="block text-gray-200 font-medium">Correo:</label>
+                <input type="email" id="correo" x-model="usuario.correo" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="contraseña" class="block text-gray-200 font-medium">Contraseña:</label>
+                <input type="password" id="contraseña" x-model="usuario.contraseña" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="edad" class="block text-gray-200 font-medium">Edad:</label>
+                <input type="number" id="edad" x-model="usuario.edad" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="genero" class="block text-gray-200 font-medium">Género:</label>
+                <select id="genero" x-model="usuario.genero" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="ubicacion" class="block text-gray-200 font-medium">Ubicación:</label>
+                <input type="text" id="ubicacion" x-model="usuario.ubicacion" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <div class="mb-6">
+                <label for="preferencias" class="block text-gray-200 font-medium">Preferencias (separadas por coma):</label>
+                <input type="text" id="preferencias" x-model="usuario.preferencias" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            </div>
+
+            <button type="submit" class="w-full px-6 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50">
+                Crear Usuario
+            </button>
+        </form>
+
+        <div x-show="loading" class="flex justify-center py-4 text-gray-500">
+            <svg class="animate-spin h-5 w-5 mr-3 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"></circle>
+                <path fill="currentColor" d="M4 12a8 8 0 018-8V4a10 10 0 00-10 10h2z" class="opacity-75"></path>
+            </svg>
+            Enviando datos...
+        </div>
+
+        <div x-show="errorMessage" class="py-4 text-center text-red-500">
+            <p x-text="errorMessage"></p>
+        </div>
+    </div>
+
+    <script src="app1.js"></script>
+</body>
+</html>
+
+
+
+
