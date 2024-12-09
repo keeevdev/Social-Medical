@@ -5,15 +5,11 @@ const cors = require('cors');
 const app = express();
 
 app.use(express.json());
-
 app.use(cors());
 
 const mongoURI = 'mongodb+srv://kevdev:dtgjcpG2puHCk6eh@proyectonosql.bjqwp.mongodb.net/socialMedicalDB1?retryWrites=true&w=majority';
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(mongoURI)
   .then(() => console.log('Conectado a MongoDB Atlas'))
   .catch(err => console.log('Error al conectar a MongoDB Atlas: ', err));
 
@@ -47,6 +43,7 @@ const port = process.env.PORT || 3002;
 app.listen(port, () => {
   console.log(`Servidor corriendo en el puerto ${port}`);
 });
+
 
 
 
