@@ -19,3 +19,6 @@
 
 ## **Integrantes**
 - Kevin Soto Bolaños
+- Fabrizio Guadamuz Estrada
+- Luisa Zuñiga Bravo
+- Mariana Hidalgo
