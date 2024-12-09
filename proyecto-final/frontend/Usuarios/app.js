@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const usuariosTableBody = document.querySelector('#usuariosTable');
-
-    // la url de la api **IMPORTANTE**
     const apiUrl = 'http://localhost:3002/api/Usuarios';
+    const searchTermInput = document.querySelector('[x-model="searchTerm"]');
+
+    let searchTerm = '';
 
     const fetchUsuarios = async () => {
         try {
@@ -24,9 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Funcion para filtrar por el usuario
+    const filterUsuariosByName = (usuarios, searchTerm) => {
+        if (!searchTerm) return usuarios;
+        return usuarios.filter(usuario => 
+            usuario.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    };
+
     const renderUsuarios = (usuarios) => {
         usuariosTableBody.innerHTML = ''; // Limpiar contenido **IMPORTANTE**
-        if (usuarios.length === 0) {
+        const filteredUsuarios = filterUsuariosByName(usuarios, searchTerm);
+
+        if (filteredUsuarios.length === 0) {
             usuariosTableBody.innerHTML = `
                 <tr>
                     <td colspan="6" class="py-2 px-4 text-center text-gray-500">
@@ -37,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        usuarios.forEach((usuario) => {
+        filteredUsuarios.forEach((usuario) => {
             const row = document.createElement('tr');
             row.className = 'hover:bg-gray-700';
             row.innerHTML = `
@@ -54,8 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('[x-show="loading"]').style.display = 'none';
     };
 
+    searchTermInput.addEventListener('input', (event) => {
+        searchTerm = event.target.value;
+        fetchUsuarios();
+    });
+
     fetchUsuarios();
 });
+
 
 
 
