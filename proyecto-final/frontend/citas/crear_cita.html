@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Cita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+
+    <div class="container mx-auto p-8">
+        <a href="index.html" class="text-gray-200 hover:text-indigo-500 flex items-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l-7-7 7-7"></path>
+            </svg>
+            Volver a la lista de citas
+        </a>
+
+        <h1 class="text-4xl font-extrabold text-center mb-8 text-gray-100">Agregar Cita</h1>
+
+        <form id="formCita" class="space-y-6">
+            <div>
+                <label for="usuario_id" class="block text-sm font-medium">Usuario</label>
+                <select id="usuario_id" name="usuario_id" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+                </select>
+            </div>
+
+            <div>
+                <label for="profesional_id" class="block text-sm font-medium">Profesional de Salud</label>
+                <select id="profesional_id" name="profesional_id" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+                </select>
+            </div>
+
+            <div>
+                <label for="fecha" class="block text-sm font-medium">Fecha</label>
+                <input type="date" id="fecha" name="fecha" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+            </div>
+
+            <div>
+                <label for="hora" class="block text-sm font-medium">Hora</label>
+                <input type="time" id="hora" name="hora" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+            </div>
+
+            <div>
+                <label for="estado_reserva" class="block text-sm font-medium">Estado</label>
+                <select id="estado_reserva" name="estado_reserva" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="confirmada">Confirmada</option>
+                    <option value="cancelada">Cancelada</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="costo" class="block text-sm font-medium">Costo</label>
+                <input type="number" id="costo" name="costo" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+            </div>
+
+            <div>
+                <label for="detalles" class="block text-sm font-medium">Detalles</label>
+                <textarea id="detalles" name="detalles" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none"></textarea>
+            </div>
+
+            <div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded focus:outline-none">Guardar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", cargarUsuariosYProfesionales);
+
+        async function cargarUsuariosYProfesionales() {
+            try {
+                const usuariosResponse = await fetch("http://localhost:3002/api/Usuarios");
+                const usuarios = await usuariosResponse.json();
+                const selectUsuarios = document.getElementById("usuario_id");
+                usuarios.forEach(usuario => {
+                    const option = document.createElement("option");
+                    option.value = usuario._id;
+                    option.textContent = `${usuario.nombre}`;
+                    selectUsuarios.appendChild(option);
+                });
+
+                const profesionalesResponse = await fetch("http://localhost:3002/api/ProfesionalesSalud");
+                const profesionales = await profesionalesResponse.json();
+                const selectProfesionales = document.getElementById("profesional_id");
+                profesionales.forEach(profesional => {
+                    const option = document.createElement("option");
+                    option.value = profesional._id;
+                    option.textContent = `${profesional.nombre}`;
+                    selectProfesionales.appendChild(option);
+                });
+
+            } catch (error) {
+                alert("Error al cargar los datos: " + error.message);
+            }
+        }
+
+        document.getElementById("formCita").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                usuario_id: document.getElementById("usuario_id").value,
+                profesional_id: document.getElementById("profesional_id").value,
+                fecha: document.getElementById("fecha").value,
+                hora: document.getElementById("hora").value,
+                estado_reserva: document.getElementById("estado_reserva").value,
+                costo: document.getElementById("costo").value,
+                detalles: document.getElementById("detalles").value
+            };
+
+            try {
+                const response = await fetch("http://localhost:3002/api/CitasReservas", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) throw new Error("Error al guardar la cita");
+
+                alert("Cita creada con exito");
+                window.location.href = "citas.html";
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+

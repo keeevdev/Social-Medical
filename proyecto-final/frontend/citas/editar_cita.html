@@ -1,0 +1,54 @@
+<script>
+    const citaId = new URLSearchParams(window.location.search).get("id");
+
+    const cargarCita = async () => {
+        try {
+            const response = await fetch(`http://localhost:3002/api/CitasReservas/${citaId}`);
+            if (!response.ok) throw new Error("Cita no encontrada");
+
+            const cita = await response.json();
+            document.getElementById("usuario_id").value = cita.usuario_id;
+            document.getElementById("profesional_id").value = cita.profesional_id;
+            document.getElementById("fecha").value = cita.fecha.split("T")[0];
+            document.getElementById("hora").value = cita.hora;
+            document.getElementById("estado_reserva").value = cita.estado_reserva;
+            document.getElementById("costo").value = cita.costo;
+            document.getElementById("detalles").value = cita.detalles;
+        } catch (error) {
+            alert("Error: " + error.message);
+            window.location.href = "citas.html";
+        }
+    };
+
+    document.getElementById("formCita").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            usuario_id: document.getElementById("usuario_id").value,
+            profesional_id: document.getElementById("profesional_id").value,
+            fecha: document.getElementById("fecha").value,
+            hora: document.getElementById("hora").value,
+            estado_reserva: document.getElementById("estado_reserva").value,
+            costo: document.getElementById("costo").value,
+            detalles: document.getElementById("detalles").value
+        };
+
+        try {
+            const response = await fetch(`http://localhost:3002/api/CitasReservas/${citaId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) throw new Error("Error al actualizar la cita");
+
+            alert("Cita actualizada con exito");
+            window.location.href = "citas.html";
+        } catch (error) {
+            alert("Error: " + error.message);
+        }
+    });
+
+    cargarCita();
+</script>
+
