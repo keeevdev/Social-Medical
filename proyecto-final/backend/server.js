@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const mongoURI = 'mongodb+srv://kevdev:dtgjcpG2puHCk6eh@proyectonosql.bjqwp.mongodb.net/socialMedicalDB1?retryWrites=true&w=majority';
+const mongoURI = 'mongodb+srv://Xestrada:lR63SsqMtTIB2YTi@cluster0.4gvpv.mongodb.net/socialMedicalDB1?retryWrites=true&w=majority';
 
 mongoose.connect(mongoURI)
   .then(() => console.log('Conectado a MongoDB Atlas'))

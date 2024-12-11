@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Servicio de Salud</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+</head>
+<body class="bg-gray-900 text-gray-200 font-['Roboto_Flex']">
+
+    <div class="container mx-auto p-8" x-data="servicioForm()">
+
+        <a href="indexSalud.html" class="text-gray-200 hover:text-indigo-500 flex items-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l-7-7 7-7"></path>
+            </svg>
+            Volver al inicio
+        </a>
+
+        <h1 class="text-4xl font-extrabold text-center mb-8 text-gray-100">Crear Servicio de Salud</h1>
+
+        <form @submit.prevent="submitForm" class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="mb-4">
+                <label for="nombre_servicio" class="block text-gray-200 font-medium">Nombre del Servicio:</label>
+                <input type="text" id="nombre_servicio" x-model="servicio.nombre_servicio" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="tipo" class="block text-gray-200 font-medium">Tipo:</label>
+                <input type="text" id="tipo" x-model="servicio.tipo" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="descripcion" class="block text-gray-200 font-medium">Descripción:</label>
+                <textarea id="descripcion" x-model="servicio.descripcion" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="precio" class="block text-gray-200 font-medium">Precio:</label>
+                <input type="number" id="precio" x-model="servicio.precio" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="duracion" class="block text-gray-200 font-medium">Duración (en minutos):</label>
+                <input type="number" id="duracion" x-model="servicio.duracion" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="categorias" class="block text-gray-200 font-medium">Categorías (separadas por coma):</label>
+                <input type="text" id="categorias" x-model="servicio.categorias" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            </div>
+
+            <div class="mb-4">
+                <label for="profesional_id" class="block text-gray-200 font-medium">ID del Profesional:</label>
+                <input type="number" id="profesional_id" x-model="servicio.profesional_id" class="w-full px-6 py-3 mt-2 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+            </div>
+
+            <button type="submit" class="w-full px-6 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50">
+                Crear Servicio
+            </button>
+        </form>
+
+        <div x-show="loading" class="flex justify-center py-4 text-gray-500">
+            <svg class="animate-spin h-5 w-5 mr-3 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"></circle>
+                <path fill="currentColor" d="M4 12a8 8 0 018-8V4a10 10 0 00-10 10h2z" class="opacity-75"></path>
+            </svg>
+            Enviando datos...
+        </div>
+
+        <div x-show="errorMessage" class="py-4 text-center text-red-500">
+            <p x-text="errorMessage"></p>
+        </div>
+    </div>
+
+    <script src="crearServicioSalud.js"></script>
+</body>
+</html>
