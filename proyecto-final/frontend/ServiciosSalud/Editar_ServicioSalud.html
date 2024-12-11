@@ -14,6 +14,38 @@
 </head>
 <body class="bg-gray-900 text-gray-200 font-['Roboto_Flex']">
 
+    <header class="bg-gray-900 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl text-white font-bold hover:text-indigo-500 transition-all">
+                SocialMedical
+            </a>
+
+            <nav class="hidden md:flex space-x-8 text-lg text-gray-300">
+                <a href="../Usuarios/index.html" class="hover:text-indigo-500 transition-colors">Usuarios</a>
+                <a href="/profesionales" class="hover:text-indigo-500 transition-colors">Profesionales</a>
+                <a href="../ServiciosSalud/indexSalud.html" class="hover:text-indigo-500 transition-colors">Servicios</a>
+                <a href="/citas" class="hover:text-indigo-500 transition-colors">Citas</a>
+                <a href="/reseñas" class="hover:text-indigo-500 transition-colors">Reseñas</a>
+                <a href="/consultas" class="hover:text-indigo-500 transition-colors">Consultas</a>
+            </nav>
+
+            <div class="md:hidden">
+                <button x-data="{ open: false }" @click="open = !open" class="text-gray-300 focus:outline-none">
+                    <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <div x-show="open" class="absolute top-16 right-0 bg-gray-800 text-gray-300 w-48 py-4 shadow-md rounded-lg">
+                    <a href="../Usuarios/index.html" class="block px-4 py-2 hover:text-indigo-500">Usuarios</a>
+                    <a href="/profesionales" class="block px-4 py-2 hover:text-indigo-500">Profesionales</a>
+                    <a href="/servicios" class="block px-4 py-2 hover:text-indigo-500">Servicios</a>
+                    <a href="/citas" class="block px-4 py-2 hover:text-indigo-500">Citas</a>
+                    <a href="/reseñas" class="block px-4 py-2 hover:text-indigo-500">Reseñas</a>
+                    <a href="/consultas" class="block px-4 py-2 hover:text-indigo-500">Consultas</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="container mx-auto p-8" x-data="editServicioForm()">
 
         <a href="indexSalud.html" class="text-gray-200 hover:text-indigo-500 flex items-center mb-6">
