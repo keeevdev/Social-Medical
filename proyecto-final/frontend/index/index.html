@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialMedical - Plataforma de Salud</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+</head>
+<body class="bg-gray-900 text-gray-200 font-['Roboto_Flex']">
+
+    <header class="bg-gray-900 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl text-white font-bold hover:text-indigo-500 transition-all">
+                SocialMedical
+            </a>
+
+            <nav class="hidden md:flex space-x-8 text-lg text-gray-300">
+                <a href="../Usuarios/index.html" class="hover:text-indigo-500 transition-colors">Usuarios</a>
+                <a href="/profesionales" class="hover:text-indigo-500 transition-colors">Profesionales</a>
+                <a href="../ServiciosSalud/indexSalud.html" class="hover:text-indigo-500 transition-colors">Servicios</a>
+                <a href="/citas" class="hover:text-indigo-500 transition-colors">Citas</a>
+                <a href="/reseñas" class="hover:text-indigo-500 transition-colors">Reseñas</a>
+                <a href="/consultas" class="hover:text-indigo-500 transition-colors">Consultas</a>
+            </nav>
+
+            <div class="md:hidden">
+                <button x-data="{ open: false }" @click="open = !open" class="text-gray-300 focus:outline-none">
+                    <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <div x-show="open" class="absolute top-16 right-0 bg-gray-800 text-gray-300 w-48 py-4 shadow-md rounded-lg">
+                    <a href="../Usuarios/index.html" class="block px-4 py-2 hover:text-indigo-500">Usuarios</a>
+                    <a href="/profesionales" class="block px-4 py-2 hover:text-indigo-500">Profesionales</a>
+                    <a href="/servicios" class="block px-4 py-2 hover:text-indigo-500">Servicios</a>
+                    <a href="/citas" class="block px-4 py-2 hover:text-indigo-500">Citas</a>
+                    <a href="/reseñas" class="block px-4 py-2 hover:text-indigo-500">Reseñas</a>
+                    <a href="/consultas" class="block px-4 py-2 hover:text-indigo-500">Consultas</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 sm:p-8 lg:p-12">
+        <h1 class="text-4xl font-extrabold text-center mb-8 text-gray-100">Bienvenido a SocialMedical</h1>
+
+        <section class="bg-gray-800 p-8 rounded-lg shadow-lg space-y-8">
+            <h2 class="text-2xl font-semibold text-gray-200 mb-4">Funcionalidades Principales</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md hover:bg-gray-600 transition">
+                    <h3 class="text-xl font-semibold text-gray-200">Pagos y Transacciones</h3>
+                    <p class="text-gray-300 mt-2">Consulta y gestiona los pagos realizados, incluyendo el estado del pago y el metodo utilizado.</p>
+                    <a href="/pagos" class="mt-4 inline-block px-6 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        Gestionar Pagos
+                    </a>
+                </div>
+
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md hover:bg-gray-600 transition">
+                    <h3 class="text-xl font-semibold text-gray-200">Mensajes y Comunicaciones</h3>
+                    <p class="text-gray-300 mt-2">Envía, recibe y administra los mensajes entre usuarios y profesionales de la salud.</p>
+                    <a href="/comunicaciones" class="mt-4 inline-block px-6 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        Ver Mensajes
+                    </a>
+                </div>
+
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md hover:bg-gray-600 transition">
+                    <h3 class="text-xl font-semibold text-gray-200">Especialidades Medicas</h3>
+                    <p class="text-gray-300 mt-2">Explora las especialidades medicas disponibles y encuentra el especialista adecuado.</p>
+                    <a href="/especialidades" class="mt-4 inline-block px-6 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        Ver Especialidades
+                    </a>
+                </div>
+
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md hover:bg-gray-600 transition">
+                    <h3 class="text-xl font-semibold text-gray-200">Promociones y Descuentos</h3>
+                    <p class="text-gray-300 mt-2">Consulta las promociones disponibles y aprovecha los descuentos ofrecidos.</p>
+                    <a href="/promociones" class="mt-4 inline-block px-6 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        Ver Promociones
+                    </a>
+                </div>
+
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md hover:bg-gray-600 transition">
+                    <h3 class="text-xl font-semibold text-gray-200">Alertas y Notificaciones</h3>
+                    <p class="text-gray-300 mt-2">Mantente al dia con recordatorios y notificaciones importantes sobre tus citas y servicios.</p>
+                    <a href="/alertas" class="mt-4 inline-block px-6 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        Ver Alertas
+                    </a>
+                </div>
+
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md hover:bg-gray-600 transition">
+                    <h3 class="text-xl font-semibold text-gray-200">Historial de Actividades</h3>
+                    <p class="text-gray-300 mt-2">Revisa el registro de actividades realizadas por los usuarios en la plataforma.</p>
+                    <a href="/historial" class="mt-4 inline-block px-6 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        Ver Historial
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
