@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const usuariosTableBody = document.querySelector('#usuariosTable');
     const apiUrl = 'http://localhost:3002/api/Usuarios';
     const searchTermInput = document.querySelector('[x-model="searchTerm"]');
-
     let searchTerm = '';
 
     const fetchUsuarios = async () => {
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Funcion para filtrar por el usuario
     const filterUsuariosByName = (usuarios, searchTerm) => {
         if (!searchTerm) return usuarios;
         return usuarios.filter(usuario => 
@@ -40,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (filteredUsuarios.length === 0) {
             usuariosTableBody.innerHTML = `
                 <tr>
-                    <td colspan="6" class="py-2 px-4 text-center text-gray-500">
+                    <td colspan="7" class="py-2 px-4 text-center text-gray-500">
                         No hay usuarios disponibles
                     </td>
                 </tr>
@@ -58,6 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td class="py-2 px-4">${usuario.edad}</td>
                 <td class="py-2 px-4">${usuario.genero}</td>
                 <td class="py-2 px-4">${usuario.ubicacion}</td>
+                <td class="py-2 px-4">
+                    <button onclick="deleteUsuario('${usuario.usuario_id}')" class="text-red-500 hover:text-red-700">
+                        Eliminar
+                    </button>
+                </td>
             `;
             usuariosTableBody.appendChild(row);
         });
@@ -70,8 +73,33 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchUsuarios();
     });
 
+    const deleteUsuario = async (usuarioId) => {
+        const confirmDelete = confirm('¿Estás seguro de que quieres eliminar este usuario?');
+        if (!confirmDelete) return;
+
+        try {
+            const response = await fetch(`${apiUrl}/${usuarioId}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al eliminar el usuario');
+            }
+
+            fetchUsuarios();
+        } catch (error) {
+            console.error('Error al eliminar usuario:', error.message);
+            alert(`Error al eliminar el usuario: ${error.message}`);
+        }
+    };
+
     fetchUsuarios();
 });
+
+
+
+
 
 
 
