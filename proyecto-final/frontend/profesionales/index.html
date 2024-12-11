@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Profesionales de Salud</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+</head>
+<body class="bg-gray-900 text-gray-200 font-['Roboto_Flex']">
+
+    <div class="container mx-auto p-8">
+
+        <a href="../index/index.html" class="text-gray-200 hover:text-indigo-500 flex items-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l-7-7 7-7"></path>
+            </svg>
+            Volver al inicio
+        </a>
+
+        <h1 class="text-4xl font-extrabold text-center mb-8 text-gray-100">Gestion de Profesionales de Salud</h1>
+
+        <form id="formAgregar" class="mb-6 bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-4">Agregar Profesional</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="text" id="nombre" placeholder="Nombre" class="px-4 py-2 bg-gray-700 text-gray-200 rounded" required>
+                <input type="text" id="especialidad" placeholder="Especialidad" class="px-4 py-2 bg-gray-700 text-gray-200 rounded" required>
+                <input type="text" id="ubicacion" placeholder="Ubicación" class="px-4 py-2 bg-gray-700 text-gray-200 rounded" required>
+                <input type="number" id="experiencia" placeholder="Años de experiencia" class="px-4 py-2 bg-gray-700 text-gray-200 rounded" required>
+                <input type="text" id="horario_atencion" placeholder="Horario (Ej: Lunes-Viernes: 9am-5pm)" class="px-4 py-2 bg-gray-700 text-gray-200 rounded" required>
+                <input type="number" step="0.01" id="tarifa" placeholder="Tarifa ($)" class="px-4 py-2 bg-gray-700 text-gray-200 rounded" required>
+                <input type="email" id="contacto" placeholder="Correo de contacto" class="px-4 py-2 bg-gray-700 text-gray-200 rounded" required>
+            </div>
+            <button type="submit" class="mt-4 px-6 py-2 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600">Agregar</button>
+        </form>
+
+        <h3 class="text-2xl font-bold mb-4">Lista de Profesionales</h3>
+        <div class="overflow-x-auto bg-gray-800 rounded-lg shadow-lg">
+            <table class="min-w-full text-sm text-gray-400">
+                <thead class="bg-gray-700 text-gray-200">
+                    <tr>
+                        <th class="py-3 px-4 text-left">ID</th>
+                        <th class="py-3 px-4 text-left">Nombre</th>
+                        <th class="py-3 px-4 text-left">Especialidad</th>
+                        <th class="py-3 px-4 text-left">Ubicacion</th>
+                        <th class="py-3 px-4 text-left">Experiencia</th>
+                        <th class="py-3 px-4 text-left">Horario</th>
+                        <th class="py-3 px-4 text-left">Tarifa</th>
+                        <th class="py-3 px-4 text-left">Contacto</th>
+                        <th class="py-3 px-4 text-left">Disponibilidad</th>
+                        <th class="py-3 px-4 text-left">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaProfesionales" class="divide-y divide-gray-600"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
