@@ -1,4 +1,4 @@
-function editServicioForm() {
+function servicioForm() {
     return {
         servicio: {
             nombre_servicio: '',
@@ -11,14 +11,19 @@ function editServicioForm() {
         },
         loading: false,
         errorMessage: '',
+        servicio_id: new URLSearchParams(window.location.search).get('id'), 
+        async cargarServicio() {
+            if (!this.servicio_id) {
+                this.errorMessage = 'ID del servicio no proporcionado.';
+                return;
+            }
 
-        async fetchServicioData() {
-            const servicioId = window.location.search.split('=')[1];  // Obtener el ID del servicio desde la URL
             try {
-                const response = await fetch(`http://localhost:3002/api/ServiciosSalud/${servicioId}`);
+                const response = await fetch(`http://localhost:3002/api/ServiciosSalud/${this.servicio_id}`);
                 const data = await response.json();
+
                 if (response.ok) {
-                    this.servicio = data;
+                    this.servicio = data.servicio;
                 } else {
                     this.errorMessage = data.message || 'Error desconocido';
                 }
@@ -32,6 +37,7 @@ function editServicioForm() {
             this.errorMessage = '';
 
             const servicioData = {
+                servicio_id: this.servicio_id,
                 nombre_servicio: this.servicio.nombre_servicio,
                 tipo: this.servicio.tipo,
                 descripcion: this.servicio.descripcion,
@@ -42,7 +48,7 @@ function editServicioForm() {
             };
 
             try {
-                const response = await fetch(`http://localhost:3002/api/ServiciosSalud/${this.servicio._id}`, {
+                const response = await fetch(`http://localhost:3002/api/ServiciosSalud/${this.servicio_id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -64,9 +70,3 @@ function editServicioForm() {
         }
     };
 }
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const form = editServicioForm();
-    form.fetchServicioData();
-});
