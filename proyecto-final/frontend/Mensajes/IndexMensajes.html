@@ -4,27 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Mensajes</title>
-    <link rel="stylesheet" href="styles.css"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header>
-        <h1>Gestión de Mensajes</h1>
+<body class="bg-gray-900 text-gray-200 font-['Roboto_Flex']">
+
+    <header class="bg-gray-900 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-3xl text-white font-bold">Gestión de Mensajes</h1>
+        </div>
     </header>
-    <main>
-        <section id="mensaje-form">
-            <h2>Enviar Nuevo Mensaje</h2>
-            <form id="formEnviarMensaje">
-                <label for="contenido">Contenido:</label>
-                <textarea id="contenido" required></textarea>
-                <button type="submit">Enviar Mensaje</button>
+
+    <main class="container mx-auto p-8">
+        <!-- Sección de formulario -->
+        <section id="mensaje-form" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Enviar Nuevo Mensaje</h2>
+            <form id="formEnviarMensaje" class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <label for="contenido" class="block text-sm font-medium mb-2">Contenido:</label>
+                <textarea id="contenido" required class="w-full h-32 p-4 bg-gray-700 text-gray-300 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-600 shadow-sm"></textarea>
+                <button type="submit" class="mt-4 px-6 py-3 bg-indigo-600 text-white rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">Enviar Mensaje</button>
             </form>
         </section>
-        
+
+        <!-- Sección de mensajes 
         <section id="lista-mensajes">
-            <h2>Lista de Mensajes</h2>
-            <ul id="mensajes"></ul>
-        </section>
+            <h2 class="text-2xl font-bold mb-6">Lista de Mensajes</h2>
+            <ul id="mensajes" class="bg-gray-800 p-6 rounded-lg shadow-lg divide-y divide-gray-700">
+                -- Los mensajes se añadirán dinámicamente aquí --
+            </ul>
+        </section>-->
     </main>
+
     <script src="crearMensajes.js"></script>
 </body>
 </html>
