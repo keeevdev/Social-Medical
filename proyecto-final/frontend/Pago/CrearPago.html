@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Pago</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+
+    <header class="bg-gray-900 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../index/index.html" class="text-3xl text-white font-bold hover:text-indigo-500 transition-all">
+                SocialMedical
+            </a>
+
+            <nav class="hidden md:flex space-x-8 text-lg text-gray-300">
+                <a href="../Usuarios/index.html" class="hover:text-indigo-500 transition-colors">Usuarios</a>
+                <a href="../profesionales/index.html" class="hover:text-indigo-500 transition-colors">Profesionales</a>
+                <a href="../ServiciosSalud/indexSalud.html" class="hover:text-indigo-500 transition-colors">Servicios</a>
+                <a href="../citas/index.html" class="hover:text-indigo-500 transition-colors">Citas</a>
+                <a href="/reseñas" class="hover:text-indigo-500 transition-colors">Reseñas</a>
+                <a href="../consultas/index.html" class="hover:text-indigo-500 transition-colors">Consultas</a>
+            </nav>
+
+            <div class="md:hidden">
+                <button x-data="{ open: false }" @click="open = !open" class="text-gray-300 focus:outline-none">
+                    <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <div x-show="open" class="absolute top-16 right-0 bg-gray-800 text-gray-300 w-48 py-4 shadow-md rounded-lg">
+                    <a href="../Usuarios/index.html" class="block px-4 py-2 hover:text-indigo-500">Usuarios</a>
+                    <a href="/profesionales" class="block px-4 py-2 hover:text-indigo-500">Profesionales</a>
+                    <a href="/servicios" class="block px-4 py-2 hover:text-indigo-500">Servicios</a>
+                    <a href="/citas" class="block px-4 py-2 hover:text-indigo-500">Citas</a>
+                    <a href="/reseñas" class="block px-4 py-2 hover:text-indigo-500">Reseñas</a>
+                    <a href="/consultas" class="block px-4 py-2 hover:text-indigo-500">Consultas</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto p-8">
+        <a href="indexPago.html" class="text-gray-200 hover:text-indigo-500 flex items-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l-7-7 7-7"></path>
+            </svg>
+            Volver a la lista de pagos
+        </a>
+
+        <h1 class="text-4xl font-extrabold text-center mb-8 text-gray-100">Crear Pago</h1>
+
+        <form id="formPago" class="space-y-6">
+            <div>
+                <label for="usuario_id" class="block text-sm font-medium">Usuario</label>
+                <select id="usuario_id" name="usuario_id" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+                </select>
+            </div>
+
+            <div>
+                <label for="servicio_id" class="block text-sm font-medium">Servicio</label>
+                <select id="servicio_id" name="servicio_id" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+                </select>
+            </div>
+
+            <div>
+                <label for="monto" class="block text-sm font-medium">Monto</label>
+                <input type="number" id="monto" name="monto" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+            </div>
+
+            <div>
+                <label for="metodo_pago" class="block text-sm font-medium">Método de Pago</label>
+                <select id="metodo_pago" name="metodo_pago" required class="w-full px-4 py-2 bg-gray-800 text-gray-200 rounded border border-gray-600 focus:outline-none">
+                    <option value="efectivo">Efectivo</option>
+                    <option value="tarjeta">Tarjeta</option>
+                    <option value="transferencia">Transferencia</option>
+                </select>
+            </div>
+
+            <div>
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded focus:outline-none">Guardar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="crearPago.js"></script>
+</body>
+</html>
